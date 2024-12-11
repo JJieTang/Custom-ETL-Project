@@ -8,7 +8,7 @@ def wait_for_postgres(host, max_retries=5, delay_seconds=5):
     while retries < max_retries:
         try:
             result = subprocess.run(
-                ['pg_isready', 'h', host], check=True, capture_output=True, text=True
+                ['pg_isready', '-h', host], check=True, capture_output=True, text=True
             )
             if 'accepting connections' in result.stdout:
                 print('Successfully connected to PostgreSQL!')
@@ -62,7 +62,7 @@ subprocess.run(dump_command, env=subprocess_env, check=True)
 
 # Use pqsl to load the dumped SQL file into the destination database
 load_command = [
-    'pqsl',
+    'psql',
     '-h', destination_config['host'],
     '-U', destination_config['user'],
     '-d', destination_config['dbname'],

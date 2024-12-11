@@ -110,7 +110,7 @@ CREATE TABLE actors (
 
 CREATE TABLE film_actors (
     film_id INTEGER REFERENCES films(film_id),
-    actor_id INTEGER REFERENCES actors(actor_id)
+    actor_id INTEGER REFERENCES actors(actor_id),
     PRIMARY KEY (film_id, actor_id)
 );
 
